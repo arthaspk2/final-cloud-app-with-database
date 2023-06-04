@@ -108,13 +108,13 @@ class Question(models.Model):
 
     # <HINT> A sample model method to calculate if learner get the score of the question
 
-def is_get_score(self, selected_ids):
-    all_answers = self.choice_set.filter(is_correct=True).count()
-    selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
-    if all_answers == selected_correct:
-        return True
-    else:
-        return False
+    def is_get_score(self, selected_ids):
+        all_answers = self.choice_set.filter(is_correct=True).count()
+        selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
+        if all_answers == selected_correct:
+            return True
+        else:
+            return False
 
 
 #  <HINT> Create a Choice Model with:
@@ -127,6 +127,8 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=500)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     is_correct = models.BooleanField(default=False)
+
+    
 
 # <HINT> The submission model
 # One enrollment could have multiple submission
